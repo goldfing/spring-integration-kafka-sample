@@ -66,6 +66,7 @@ public class DemoApplication {
         for (int i = 0; i < 10; i++) {
             toKafka.send(new GenericMessage<>("foo" + i));
         }
+
         PollableChannel fromKafka = context.getBean("received", PollableChannel.class);
         Message<?> received = fromKafka.receive(10000);
         while (received != null) {
